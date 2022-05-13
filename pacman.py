@@ -130,45 +130,47 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
+'''En estos if se le da una mayor inteligencia a los fantasmas y cambiando el numero de los 
+vectores, de 5 a 10, aumenta la velocidad del fantasma'''
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
         else:
             options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
+                vector(10, 0),
+                vector(-10, 0),
+                vector(0, 10),
+                vector(0, -10),
             ]
             dist = pacman - point
             if (dist.x > 0 and dist.y > 0) and (valid(point + vector(5, 0)) or valid(point + vector(0, 5))):
                 options = [
-                    vector(5, 0),
-                    vector(0, 5),
+                    vector(10, 0),
+                    vector(0, 10),
                 ] 
                 plan = choice(options)
                 course.x = plan.x
                 course.y = plan.y
             elif (dist.x > 0 and dist.y < 0) and (valid(point + vector(5, 0)) or valid(point + vector(0, -5))):
                 options = [
-                    vector(5, 0),
-                    vector(0, -5),
+                    vector(10, 0),
+                    vector(0, -10),
                 ] 
                 plan = choice(options)
                 course.x = plan.x
                 course.y = plan.y
             elif (dist.x < 0 and dist.y < 0) and (valid(point + vector(-5, 0)) or valid(point + vector(0, -5))):
                 options = [
-                    vector(-5, 0),
-                    vector(0, -5),
+                    vector(-10, 0),
+                    vector(0, -10),
                 ] 
                 plan = choice(options)
                 course.x = plan.x
                 course.y = plan.y
             elif (dist.x < 0 and dist.y > 0) and (valid(point + vector(-5, 0)) or valid(point + vector(0, 5))):
                 options = [
-                    vector(-5, 0),
-                    vector(0, 5),
+                    vector(-10, 0),
+                    vector(0, 10),
                 ] 
                 plan = choice(options)
                 course.x = plan.x
